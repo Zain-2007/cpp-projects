@@ -1,0 +1,83 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+void Addstudent()
+{
+	ofstream file("Studentrecord.txt", ios::app);
+	if (!file)
+	{
+	cout<<"Error: Could not open file for writing "<<endl;
+	return;
+}
+
+		int Id;
+	string Name;
+	char Grade;
+	
+	cout<<"\nEnter the student id "<<endl;
+	cin>>Id;
+	
+	cout<<"Enter the student name "<<endl;
+	cin>>Name;
+	
+	cout<<"Enter the Grades "<<endl;
+	cin>>Grade;
+	
+	file << Id << " " << Name << " " << Grade << endl;
+	
+	cout<<"\nRecord added successfully"<<endl;
+	
+	file.close(); }
+	void Display_Record()
+	{
+		ifstream file("Studentrecord.txt" );
+		if(!file)
+		{
+		cout<<"Error: Could not open file"<<endl;
+		return;
+		}
+		cout<<"\n------Students Record------\n";
+		
+		int Id;
+		string Name;
+		char Grade;
+		while ( file >> Id >> Name >> Grade )
+		{cout<<"ID: " <<Id<<endl;
+		cout<<"Name: " <<Name<<endl;
+		cout<<"Grade "<<Grade<<endl;
+			
+			
+		}
+		file.close();
+	
+		
+	}
+	int main()
+	{
+	int choice;
+	
+	do{
+	
+	cout<<"\n-----Student Record System-----\n"<<endl;
+	cout<<"1. Add student record "<<endl;
+	cout<<"2. Open file"<<endl;
+	cout<<"3. Exit"<<endl;
+	cout<<"Enter your choice"<<endl;
+	cin>>choice;
+	
+	switch (choice)
+	{
+		
+	case 1: Addstudent();
+	break;
+	case 2: Display_Record();
+	break;
+	case 3:
+		cout<<"Exiting Program"<<endl;;
+		break;
+	default : 
+	cout<<"Invalid Choice"<<endl;}}
+                                    while( choice != 3);
+	return 0;
+}
+		
