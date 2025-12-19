@@ -1,0 +1,163 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+//Adding function for add book
+void add_book(){
+	ofstream file("Library.txt", ios::app);
+	if(!file)
+	{
+		cout<<"Error in opening the file "<<endl;
+		return;
+	}
+	int id;
+	string title, author;
+	float price;
+	
+	
+	cout<<"Enter the ID"<<endl;
+	cin>>id;
+	
+	cin.ignore();
+	
+
+	
+	cout<<"Enter the title of book"<<endl;
+	getline(cin , title);
+	
+	
+	cout<<"Enter the name of author"<<endl;
+	getline(cin , author);
+	
+	cout<<"Enter the price of this book"<<endl;
+	cin>>price;
+	
+	file<<id<<endl;
+	file<<title<<endl;
+	file<<author<<endl;
+	file<<price<<endl;
+	
+	
+	file.close();
+	
+	cout<<"------Book added successfully------"<<endl;
+	
+	
+}
+//Adding Function For Displaying collection
+
+void display_collection()
+{
+	ifstream file("Library.txt");
+	if(!file)
+	{
+		cout<<"File not found"<<endl;
+		return;
+	}
+	int id;
+	string title, author;
+	float price;
+	
+	
+	cout<<"------All Books Record------"<<endl;
+	
+	while(file >> id)
+	{
+		file.ignore();
+		getline(file , title);
+		getline(file , author);
+		file >> price;
+		
+		cout<<"Book ID: "<<id<<endl;
+		cout<<"Book Title: "<<title<<endl;
+		cout<<"Book Author: "<<author<<endl;
+		cout<<"Book Price: "<<price<<endl;
+		cout<<"-------------------------------------"<<endl;
+		
+	}
+	file.close();
+	
+}
+//Adding Function for Searching
+void Search()
+{
+	ifstream file("Library.txt");
+	if (!file) {
+        cout << "Error opening file!\n";
+        return;
+    }
+	int id, searchId;
+	string title, author;
+	float price;
+	bool found = false;
+	
+	cout<<"Enter the book id to search"<<endl;
+	cin>>searchId;
+	
+	while(file >> id)
+	{
+		file.ignore();		
+		getline(file , title);
+		getline(file , author);
+		file >> price;
+		if ( id == searchId)
+		{
+			
+		cout<<"Book ID: "<<id<<endl;
+		cout<<"Book Title: "<<title<<endl;
+		cout<<"Book Author: "<<author<<endl;
+		cout<<"Book Price: "<<price<<endl;
+		cout<<"-------------------------------------"<<endl;
+		found = true;
+		break;
+			
+		}
+		
+	}
+
+	file.close();	
+}
+
+//Adding Function for Deleting Data
+
+void Delete_Data()
+{
+	ofstream file("Library.txt");
+	if(!file)
+	{cout<<"File not Found"<<endl;
+	}
+	file.close();
+}
+int main()
+{
+	int choice;
+	while(true)
+	{
+		cout<<"-------Library Menu-------"<<endl;
+		cout<<"1. Add Book"<<endl;
+		cout<<"2. Search Book by Id"<<endl;
+		cout<<"3. Show all "<<endl;
+		cout<<"4. Erase all data"<<endl;
+		cout<<"5. Exiting Program"<<endl;
+		cout<<"Enter your choice"<<endl;
+		cin>>choice;
+		
+		
+		switch(choice)
+		{
+			case 1:add_book();
+			break;
+			case 2:Search();
+			break;
+			case 3:display_collection();
+			break;
+			case 4:Delete_Data();
+			cout<<"All data is erased"<<endl;
+			break;
+			case 5:exit(0);
+			default:
+				cout<<"You choose wrong option"<<endl;
+		}
+	}
+	return 0;
+}
