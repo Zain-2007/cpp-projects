@@ -1,0 +1,90 @@
+#include<iostream>
+#include<iomanip>
+using namespace std;
+
+//Water has 30% weightage
+float add_water()
+{
+	int water;
+	cout<<"Enter the number of glasses you drank of water:"<<endl;
+	cin>>water;
+	
+	if(water >= 9)
+	return 30;
+	else
+	return (water/9.0) *30;
+	
+}
+//steps havs 40% weightage
+float add_steps()
+{
+	int steps;
+	
+	
+	cout<<"Enter number of steps you walked:"<<endl;
+	cin>>steps;
+	
+	if(steps>=7000)
+	return 40;
+	else 
+	return (steps/7000.0) * 40;
+}
+//Sleep has 30% weightage
+
+float add_sleep()
+{
+	float sleep;
+	
+	
+	cout<<"Enter number of hours you slept:"<<endl;
+	cin>>sleep;
+	
+	if(sleep>=9)
+	return 30;
+	else 
+	return (sleep/9.0) *30;
+	
+	
+}
+int main()
+{
+	float total_score = 0;
+
+	cout<<"\t\t\t\t\t========HEALTH SCORE CALCULATOR========="<<endl;
+	for(int day =1;day<=7; day++)
+	{
+		float daily_score = 0;
+		
+		cout<<"--------------------------------------------"<<endl;
+		cout<<"Details of Day"<<day<<":"<<endl;
+		
+		
+		daily_score += add_water();
+		daily_score +=add_steps();
+		daily_score +=add_sleep();
+		
+		cout<<fixed<<setprecision(1)<<"Daily score = "<<daily_score<<"/100.0"<<endl;
+		
+		total_score += daily_score;
+		
+		
+	}
+	float avg = total_score / 7;
+	cout<<"--------------------------------------------"<<endl;
+	cout<<fixed<<setprecision(1)<<" Weekly average = "<<avg<<"%"<<endl;
+	
+	
+	cout<<endl;
+
+	if (avg >= 80)
+	cout<<"Excellent "<<endl;
+	else if (avg >= 60)
+	cout<<"Good "<<endl;
+	else if (avg < 60)
+	cout<<"Need Improvement"<<endl;
+
+
+	return 0;
+	
+
+}
